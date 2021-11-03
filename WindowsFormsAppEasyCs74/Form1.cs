@@ -15,8 +15,10 @@ namespace WindowsFormsAppEasyCs74
     {
         private Label lb, lb2;
         private TextBox tb;
-        private ListBox lbx;
+        // private ListBox lbx;
+        private ComboBox cbx;
         private FlowLayoutPanel flp;
+        // private TableLayoutPanel tlp;
 
         public void Display()
         {
@@ -51,22 +53,39 @@ namespace WindowsFormsAppEasyCs74
             lb2.Text = "Welcome2.";
             lb2.Dock = DockStyle.Top;
             lb2.Top = tb.Bottom;
+            
+            // lbx = new ListBox();
+            // for (int i = 0; i < str.Length; i++)
+            // {
+            //     lbx.Items.Add(str[i]);
+            // }
+            // lbx.Top = lb2.Bottom;
+            // lbx.Height = 150;
 
-            lbx = new ListBox();
+            cbx = new ComboBox();
             for (int i = 0; i < str.Length; i++)
             {
-                lbx.Items.Add(str[i]);
+                cbx.Items.Add(str[i]);
             }
-            lbx.Top = lb2.Bottom;
+            cbx.Top = lb2.Bottom;
+            cbx.Height = 150;
 
+            flp = new FlowLayoutPanel();
+            
             lb.Parent = flp;
             tb.Parent = flp;
             lb2.Parent = flp;
-            lbx.Parent = flp;
+            // lbx.Parent = flp;
+            cbx.Parent = flp;
+            // lb.Parent = this;
+            // tb.Parent = this;
+            // lb2.Parent = this;
+            // lbx.Parent = this;
 
             tb.KeyDown += new KeyEventHandler(TbKeyDown);
 
-            lbx.SelectedIndexChanged += new EventHandler(LbxSelectedIndexChanged);
+            // lbx.SelectedIndexChanged += new EventHandler(LbxSelectedIndexChanged);
+            cbx.SelectedIndexChanged += new EventHandler(CbxSelectedIndexChanged);
 
             flp.Parent = this;
         }
@@ -80,9 +99,11 @@ namespace WindowsFormsAppEasyCs74
             }
         }
 
-        public void LbxSelectedIndexChanged(Object sender, EventArgs e)
+        // public void LbxSelectedIndexChanged(Object sender, EventArgs e)
+        public void CbxSelectedIndexChanged(Object sender, EventArgs e)
         {
-            ListBox temp = (ListBox) sender;
+            // ListBox temp = (ListBox) sender;
+            ComboBox temp = (ComboBox) sender;
             lb2.Text = String.Format("Selected {0}.", temp.Text);
         }
     }
